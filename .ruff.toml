@@ -1,0 +1,5 @@
+select = ["E", "W", "F", "F841"]
+ignore = ["F403", "E501"]
+line-length = 120
+fixable = ["I"]
+fix = true # ruff --fix
