@@ -1,0 +1,77 @@
+{
+  "train_dataset_settings": {
+      "sources": [
+          {
+              "name": "train",
+              "records_path": "./data/datasets/train_chat.jsonl",
+              "num_samples": 277
+          }
+      ],
+      "prompt_template": {
+          "role_tag_mapping": {
+              "bot": "assistant",
+              "user": "user",
+              "system": "system"
+          },
+          "prefix_template": "<|start_header_id|>{role}<|end_header_id|>\n\n",
+          "suffix_template": "<|eot_id|>"
+      },
+      "dataset_type": "chat",
+      "max_tokens_count": 2000,
+      "only_answer_loss": false
+  },
+  "val_dataset_settings": {
+      "sources": [
+          {
+              "name": "test",
+              "records_path": "./data/datasets/val_chat.jsonl",
+              "num_samples": 70
+          }
+      ],
+      "prompt_template": {
+          "role_tag_mapping": {
+              "bot": "assistant",
+              "user": "user",
+              "system": "system"
+          },
+          "prefix_template": "<|start_header_id|>{role}<|end_header_id|>\n\n",
+          "suffix_template": "<|eot_id|>"
+      },
+      "dataset_type": "chat",
+      "max_tokens_count": 2000,
+      "only_answer_loss": true
+  },
+  "model_settings": {
+      "model_path": "LoneStriker/Meta-Llama-3-70B-Instruct-GGUF",
+      "model_type": "causal",
+      "transformers_settings": {
+          "use_fast": false
+      }
+  },
+  "trainer_settings": {
+      "evaluation_strategy": "steps",
+      "save_total_limit": 5,
+      "load_best_model_at_end": false,
+      "per_device_train_batch_size": 1,
+      "per_device_eval_batch_size": 1,
+      "gradient_accumulation_steps": 16,
+      "logging_steps": 1,
+      "eval_steps": 1,
+      "save_steps": 8,
+      "learning_rate": 0.00004,
+      "num_train_epochs": 5,
+      "lr_scheduler_type": "linear",
+      "warmup_ratio": 0.3,
+      "fp16": false,
+      "bf16": true,
+      "optim": "adamw_torch",
+      "weight_decay": 0.01,
+      "max_grad_norm": 0.11
+  },
+  "logging_settings": {
+      "project_name": "alignment",
+      "run_name": "sft",
+      "entity": "turbo-alignment"
+  },
+  "log_path": "train_output"
+}

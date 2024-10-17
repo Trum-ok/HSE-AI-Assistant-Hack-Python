@@ -1,4 +1,4 @@
-FROM 3.12.5-alpine3.20
+FROM 3.11.9-alpine3.20
 
 WORKDIR /app
 
