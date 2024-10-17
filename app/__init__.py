@@ -1,2 +1,2 @@
-from assist import *
-from models import *
+from .assist import *
+from .models import *

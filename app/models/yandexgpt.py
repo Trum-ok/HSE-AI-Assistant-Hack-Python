@@ -20,7 +20,7 @@ class YandexGPT(BaseModel):
         folder_id: str,
         model_name: str = "lite",
         system_prompt: Optional[str] = None,
-        temperature: float = 0.6,
+        temperature: float = 0.65,
         max_tokens: int = 2000,
     ) -> None:
         super().__init__(system_prompt)
@@ -41,13 +41,13 @@ class YandexGPT(BaseModel):
         return self.ask(*args, **kwargs)
 
     # TODO: ресерч в плане отчистки истории сообщений (у меня же есть id таски => если совпадает, ...)
-    def ask(self, user_message: str, clear_history: bool = True) -> Optional[str]:
+    def ask(self, prompt: str, clear_history: bool = True) -> Optional[str]:
         if clear_history:
             self.messages = []
             if self.system_prompt:
                 self.messages.append({"role": "system", "text": self.system_prompt})
 
-        self.messages.append({"role": "user", "text": user_message})
+        self.messages.append({"role": "user", "text": prompt})
 
         json_request = {
             "modelUri": self.model_url,

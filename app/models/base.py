@@ -11,7 +11,11 @@ class BaseModel(abc.ABC):
         self.system_prompt = system_prompt
         pass
 
+    def __call__(self, *args, **kwargs) -> Optional[str]:
+        return self.ask(*args, **kwargs)
+
     @abc.abstractmethod
-    def ask(self, user_message: str, clear_history: bool = True) -> Optional[str]:
+    def ask(self, user_message: str,
+            clear_history: bool = True) -> Optional[str]:
         """Отправка запроса к ассистенту для получения ответа"""
         pass

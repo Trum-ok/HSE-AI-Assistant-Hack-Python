@@ -1,6 +1,6 @@
 import pandas as pd
 
-from app.utils.submit import string2embedding
+from submition.submit import string2embedding
 
 TEST_SIZE = 325
 EMBEDDING_SIZE = 768

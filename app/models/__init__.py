@@ -1,2 +1,2 @@
-from yandexgpt import *
-from base import *
+from .yandexgpt import *
+from .base import *
